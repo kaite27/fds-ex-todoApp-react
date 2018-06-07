@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   // Add 버튼이 눌렸을 때, 새로 리스트를 추가할 수 있도록
-  handleButtonClick = event => {
+  handleAddNewTodoButton = event => {
     // input value !== null, 빈 문자열은 falthy
     if(this.state.newTodoBody) {
       const newTodo = {
@@ -40,9 +40,32 @@ class App extends Component {
           ...this.state.todos,
           newTodo
         ],
+        // input 에 있는 값을 새 할 일로 추가하고나서 input 빈 문자열로 비워주기
         newTodoBody: ''
       })
     }
+  }
+
+  // newTodo 는 t 기존의 배열 그대로 가지고오고 ...t, 그 중 특정 t.id 만 업데이트 해라
+  handleTodoItemComplete = id => {
+    this.setState({
+      todos: this.state.todos.map(t => {
+        const newTodo = {
+          ...t
+        }
+        if(t.id === id){
+          newTodo.complete = true
+        }
+        return newTodo
+      })
+    })
+  }
+
+  // 지우기를 원하는 열을 t.id 제외한 나머지 리스트들 !t.id 을 불러와라 filter( !== )
+  handleTodoItemDelete = id => {
+    this.setState({
+      todos: this.state.todos.filter(t => t.id !== id)
+    })
   }
 
   render() {
@@ -53,17 +76,38 @@ class App extends Component {
         <h1>TODO LIST</h1>
         <label>
           <input type="text" value={newTodoBody} onChange={this.handleInputChange}/>
-          <button onClick={this.handleButtonClick}>Add</button>
+          <button onClick={this.handleAddNewTodoButton}>Add</button>
         </label>
         <ul>
+          {/* map() 에서 반환하는 DOM 요소 가장 바깥 요소에 key 를 넣어준다 */}
           {
             todos.map(todo => (
-              <li className={todo.complete ? 'complete' : ''} key={todo.id}>{todo.body}</li>
+              <TodoItem 
+                key={todo.id} 
+                id={todo.id} 
+                body={todo.body} 
+                complete={todo.complete} 
+                onComplete={this.handleTodoItemComplete} 
+                onDelete={this.handleTodoItemDelete}
+              /> 
             ))
           }
         </ul>
       </div>
     );
+  }
+}
+
+class TodoItem extends Component {
+  render() {
+    const {id, body, complete, onComplete, onDelete} = this.props
+    return (
+      <li className={complete ? 'complete' : ''} key={id}>
+        <button onClick={e => { onComplete(id) }}>Done</button>
+        {body}
+        <button onClick={e => { onDelete(id) }}>Delete</button>
+      </li>
+    )
   }
 }
 

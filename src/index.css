@@ -5,6 +5,6 @@ body {
 }
 
 .complete {
-  color: #999;
+  color: rgb(194, 194, 194);
   text-decoration: line-through;
 }
