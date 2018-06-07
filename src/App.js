@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 
-const todos = [
-  {
-    id: 1,
-    body: 'Study React',
-    complete: true
-  },
-  {
-    id: 2,
-    body: 'Study Redux',
-    complete: false
-  },
-]
-
 class App extends Component {
+  state = {
+    todos: [
+      {
+        id: 1,
+        body: 'Study React',
+        complete: true
+      },
+      {
+        id: 2,
+        body: 'Study Redux',
+        complete: false
+      },
+    ]    
+  }
+
   render() {
+    const {todos} = this.state // 분해대입!
     return (
       <div>
-        <h1>TODO LISt</h1>
+        <h1>TODO LIST</h1>
         <ul>
           {
             todos.map(todo => (
-              <li key={todo.id}>{todo.body}</li>
+              <li className={todo.complete ? 'complete' : ''} key={todo.id}>{todo.body}</li>
             ))
           }
         </ul>

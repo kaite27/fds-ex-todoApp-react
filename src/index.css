@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.complete {
+  color: #999;
+  text-decoration: line-through;
+}
