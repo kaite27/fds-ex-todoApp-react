@@ -3,7 +3,7 @@ import TodoItem from './TodoItem.js'
 
 export default class TodoList extends Component {
   render() {
-    const { todos, handleTodoItemComplete, handleTodoItemDelete } = this.props
+    const { todos, handleTodoItemComplete, handleTodoItemDelete, handleTodoItemBodyUpdate } = this.props
     return (
       <ul>
         {/* map() 에서 반환하는 DOM 요소 가장 바깥 요소에 key 를 넣어준다 */}
@@ -16,6 +16,7 @@ export default class TodoList extends Component {
               complete={todo.complete} 
               onComplete={handleTodoItemComplete} 
               onDelete={handleTodoItemDelete}
+              onBodyUpdate={handleTodoItemBodyUpdate}
             /> 
           ))
         }
