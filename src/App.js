@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
 import TodoList from './components/TodoList.js'
+import axios from 'axios'
 
-let count = 0  // count++ 을 통해 임의로 순차적 id 값 부여
+const todoAPI = axios.create({
+  baseURL: "https://big-runner.glitch.me/"
+})
+
+let count  = 1
 
 class App extends Component {
   state = {
+    loading: false,
     todos: [
-      {
-        id: count++,
-        body: 'Study React',
-        complete: true
-      },
-      {
-        id: count++,
-        body: 'Study Redux',
-        complete: false
-      },
+      // {
+      //   body: 'Study React',
+      //   complete: true
+      // },
+      // {
+      //   body: 'Study Redux',
+      //   complete: false
+      // },
     ],
     newTodoBody: ''    
   }
+
+  async componentDidMount() {
+    // (component lifecycle hook) component 가 처음 마운트되면..
+    this.setState({ loading: true })
+    const res = await todoAPI.get('/todos')
+    this.setState({
+      todos: res.data,
+      loading: false
+    })
+  }
+
   // 이벤트 조작을 위한 핸들러 함수는 `handle`을 시작으로 하는 관례, 그리고 항상 화살표 함수
   handleInputChange = event => {
     this.setState({
@@ -73,7 +88,7 @@ class App extends Component {
 
   render() {
     /* 분해대입! */
-    const {todos, newTodoBody} = this.state 
+    const {todos, newTodoBody, loading} = this.state 
     return (
       <div>
         <h1>TODO LIST</h1>
@@ -81,7 +96,11 @@ class App extends Component {
           <input type="text" value={newTodoBody} onChange={this.handleInputChange}/>
           <button onClick={this.handleAddNewTodoButton}>Add</button>
         </label>
-        <TodoList todos={todos} handleTodoItemComplete={this.handleTodoItemComplete} handleTodoItemDelete={this.handleTodoItemDelete}/>
+        {loading ? (
+          <div>loading...</div>
+        ) : (
+          <TodoList todos={todos} handleTodoItemComplete={this.handleTodoItemComplete} handleTodoItemDelete={this.handleTodoItemDelete}/>
+        )}
       </div>
     );
   }
