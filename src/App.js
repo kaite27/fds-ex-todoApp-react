@@ -65,6 +65,17 @@ class App extends Component {
     }
   }
 
+  // body 가 눌리면 prompt 로 수정창 띄우기
+  handleTodoItemBodyUpdate = async (id, body) => {
+    if(body) {
+      this.setState({ loading: true })
+      await todoAPI.patch(`/todos/${id}`, {
+        body
+      })
+      await this.fetchTodos()
+    }
+  }
+
   // newTodo 는 t 기존의 배열 그대로 가지고오고 ...t, 그 중 특정 t.id 만 업데이트 해라
   handleTodoItemComplete = async id => {
     this.setState({ loading: true })
@@ -100,7 +111,10 @@ class App extends Component {
         {loading ? (
           <div>loading...</div>
         ) : (
-          <TodoList todos={todos} handleTodoItemComplete={this.handleTodoItemComplete} handleTodoItemDelete={this.handleTodoItemDelete}/>
+          <TodoList 
+          todos={todos} 
+          handleTodoItemComplete={this.handleTodoItemComplete} handleTodoItemDelete={this.handleTodoItemDelete} handleTodoItemBodyUpdate={this.handleTodoItemBodyUpdate}
+          />
         )}
       </div>
     );
