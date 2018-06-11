@@ -8,3 +8,12 @@ body {
   color: rgb(194, 194, 194);
   text-decoration: line-through;
 }
+
+.todoBody {
+  cursor: pointer;
+  transition: color 0.6s;
+}
+
+.todoBody:hover {
+  color: #999;
+}
