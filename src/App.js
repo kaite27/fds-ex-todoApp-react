@@ -3,7 +3,7 @@ import TodoList from './components/TodoList.js'
 import axios from 'axios'
 
 const todoAPI = axios.create({
-  baseURL: "https://big-runner.glitch.me/"
+  baseURL: process.env.REACT_APP_API_URL
 })
 
 class App extends Component {
