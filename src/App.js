@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoList from './components/TodoList.js'
 
 let count = 0  // count++ 을 통해 임의로 순차적 id 값 부여
 
@@ -54,7 +55,9 @@ class App extends Component {
           ...t
         }
         if(t.id === id){
-          newTodo.complete = true
+          newTodo.complete 
+          ? (newTodo.complete = false) 
+          : (newTodo.complete = true)
         }
         return newTodo
       })
@@ -69,7 +72,7 @@ class App extends Component {
   }
 
   render() {
-    {/* 분해대입! */}
+    /* 분해대입! */
     const {todos, newTodoBody} = this.state 
     return (
       <div>
@@ -78,37 +81,12 @@ class App extends Component {
           <input type="text" value={newTodoBody} onChange={this.handleInputChange}/>
           <button onClick={this.handleAddNewTodoButton}>Add</button>
         </label>
-        <ul>
-          {/* map() 에서 반환하는 DOM 요소 가장 바깥 요소에 key 를 넣어준다 */}
-          {
-            todos.map(todo => (
-              <TodoItem 
-                key={todo.id} 
-                id={todo.id} 
-                body={todo.body} 
-                complete={todo.complete} 
-                onComplete={this.handleTodoItemComplete} 
-                onDelete={this.handleTodoItemDelete}
-              /> 
-            ))
-          }
-        </ul>
+        <TodoList todos={todos} handleTodoItemComplete={this.handleTodoItemComplete} handleTodoItemDelete={this.handleTodoItemDelete}/>
       </div>
     );
   }
 }
 
-class TodoItem extends Component {
-  render() {
-    const {id, body, complete, onComplete, onDelete} = this.props
-    return (
-      <li className={complete ? 'complete' : ''} key={id}>
-        <button onClick={e => { onComplete(id) }}>Done</button>
-        {body}
-        <button onClick={e => { onDelete(id) }}>Delete</button>
-      </li>
-    )
-  }
-}
+
 
 export default App;
