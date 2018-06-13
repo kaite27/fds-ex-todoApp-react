@@ -9,7 +9,7 @@ body {
   margin: 0 auto;
 }
 
-.todoTitle {
+h1 {
   font-size: 3rem;
   text-align: center;
   color: rgb(34, 194, 60);
