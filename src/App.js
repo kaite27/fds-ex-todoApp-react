@@ -2,35 +2,27 @@ import React, {Component} from 'react'
 
 import TodoPage from './pages/TodoPage.js'
 import LoginPage from './pages/LoginPage.js'
-
-export const PageContext = React.createContext()
+import {PageProvider, PageConsumer} from './contexts/PageContext.js'
+import {UserProvider} from './contexts/UserContext.js'
 
 export default class App extends Component {
-  state = {
-    page: 'login'
-  }
-
-  handleGoToTodoPage = (e) => {
-    this.setState({
-      page: 'todo'
-    })
-  }
-
   render() {
-    const { page } = this.state
-    const value = { goToTodoPage: this.handleGoToTodoPage }
-
     return (
-      <PageContext.Provider value={value}>
-      <div>
-        {page === 'login' ? (
-          <LoginPage />
-          ) : (
-          <TodoPage />
-          )
-        }
-      </div>
-      </PageContext.Provider>
+      <PageProvider>
+          <PageConsumer>
+            {value => (
+              <UserProvider onLogin={value.handleGoToTodoPage}>
+              {
+                value.page === 'login' ? (
+                  <LoginPage />
+                ) : (
+                  <TodoPage />
+                )  
+              }
+              </UserProvider>
+            )}
+          </PageConsumer>
+      </PageProvider>
     )
   }
 }
