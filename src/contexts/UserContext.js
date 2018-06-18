@@ -14,18 +14,11 @@ class UserProvider extends Component {
       const res = await todoAPI.post('/users/login', payload) 
       // Store token to localStorage 
       localStorage.setItem('token', res.data.token)
-
-      // Make state empty
-      this.setState({
-        username: '',
-        password: ''
-      })
     
       // Move to TODO App page
       this.props.onLogin()
     } catch (e) {
-      if(e.response) {
-        if(e.response.status === 400)
+      if(e.response && e.response.status === 400) {
         alert('Wrong ID or Password!')
       }
     }
