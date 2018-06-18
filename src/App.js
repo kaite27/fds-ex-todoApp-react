@@ -9,19 +9,18 @@ export default class App extends Component {
   render() {
     return (
       <PageProvider>
+        <UserProvider>
           <PageConsumer>
-            {value => (
-              <UserProvider onLogin={value.handleGoToTodoPage}>
-              {
-                value.page === 'login' ? (
-                  <LoginPage />
-                ) : (
-                  <TodoPage />
-                )  
-              }
-              </UserProvider>
-            )}
+            {value => localStorage.getItem('token') ? (
+                <TodoPage />
+              ) : value.page === 'login' ? (
+                <LoginPage />
+              ) : (
+                <TodoPage />
+              )
+            }           
           </PageConsumer>
+        </UserProvider>
       </PageProvider>
     )
   }
