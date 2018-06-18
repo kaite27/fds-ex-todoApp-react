@@ -1,37 +1,46 @@
 import React, { Component } from 'react';
 
 export default class LoginForm extends Component {
-  state = {
-    username: '',
-    password: ''
-  }
+  // state = {
+  //   username: '',
+  //   password: ''
+  // }
 
-  handleInputChangeID = (e) => {
-    this.setState({
-      username: e.target.value
-    })
-  }
+  // handleInputChangeID = (e) => {
+  //   this.setState({
+  //     username: e.target.value
+  //   })
+  // }
 
-  handleInputChangePW = (e) => {
-    this.setState({
-      password: e.target.value
-    })
-  }
+  // handleInputChangePW = (e) => {
+  //   this.setState({
+  //     password: e.target.value
+  //   })
+  // }
 
-  handleLogin = async e => {
+  // ref 사용해서 input 제어하기
+  usernameRef = React.createRef()
+  passwordRef = React.createRef()
+  
+  handleSubmit = e => {
+    e.preventDefault()
+    // 중간 평가때랑 똑같이 하기 위해서는 아래 input name="" 추가
+    // Change into onlogin(username, password) 
+    // const username = e.target.elements.username.value
+    // const password = e.target.elements.password.value
+    
     const {onLogin} = this.props
-    onLogin(this.state.username, this.state.password)
+    onLogin(this.usernameRef.current.value, this.passwordRef.current.value)
   }
 
   render() {
-    const { username, password } = this.state
     return (
-      <React.Fragment>
+      <form onSubmit={this.handleSubmit}>
         <h1>LOGIN PAGE</h1>        
-        <input type="text" value={username} onChange={this.handleInputChangeID} placeholder="Your ID"/>
-        <input type="password" value={password} onChange={this.handleInputChangePW} placeholder="Your Password"/>
-        <button onClick={this.handleLogin}>Login</button>
-      </React.Fragment>
+        <input ref={this.usernameRef} type="text" placeholder="Your ID"/>
+        <input type="password" ref={this.passwordRef} placeholder="Your Password"/>
+        <button>Login</button>
+      </form>
     )
   }
 }
