@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-
 const { Provider, Consumer } = React.createContext()
 
 class PageProvider extends Component {
@@ -20,9 +19,7 @@ class PageProvider extends Component {
     }
     
     return (
-      <Provider value={value}>
-        {this.props.children}
-      </Provider>
+      <Provider value={value}>{this.props.children}</Provider>
     )
   }
 }
