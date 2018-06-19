@@ -1,31 +1,23 @@
 import React, {Component} from 'react'
+import {BrowserRouter, Route, Redirect} from 'react-router-dom'
 
 import TodoPage from './pages/TodoPage.js'
 import LoginPage from './pages/LoginPage.js'
-import {PageProvider, PageConsumer} from './contexts/PageContext.js'
 import {UserProvider} from './contexts/UserContext.js'
 
 export default class App extends Component {
   render() {
     return (
-      <PageProvider>
+      <BrowserRouter>
         <UserProvider>
-          <PageConsumer>
-            {/* {value => localStorage.getItem('token') ? (
-                <TodoPage />
-              ) : value.page === 'login' ? (
-                <LoginPage />
-              ) : (
-                <TodoPage />
-              )}           */}
-            {value => value.page === 'todo' ? (
-              <TodoPage/>
-            ) : (
-              <LoginPage />
-            )}
-          </PageConsumer> 
+          <Route path='/login' component={LoginPage} />
+          <Route path='/todo' component={TodoPage} />
+
+          {localStorage.getItem('token') ? 
+          <Redirect to='/todo' /> 
+          : <Redirect to='/login' /> }
         </UserProvider>
-      </PageProvider>
+      </BrowserRouter>
     )
   }
 }

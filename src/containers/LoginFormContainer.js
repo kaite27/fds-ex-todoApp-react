@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
+import {BrowserRouter, Redirect} from 'react-router-dom'
 
 import LoginForm from '../components/LoginForm.js'
 import {UserConsumer} from '../contexts/UserContext.js'
-import {PageConsumer} from '../contexts/PageContext.js'
-import OnMount from '../components/OnMount.js'
 
 export default class LoginFormContainer extends Component {
+  state = {
+    success: false
+  }
+
   render() {
-    return (
-      <UserConsumer>
-        {({login}) => (
-          <PageConsumer>
-            {({handleGoToTodoPage}) => (
-              <React.Fragment>
-                <LoginForm onLogin={async (usernamer, password) => {
-                  await login(usernamer, password)
-                  handleGoToTodoPage()
-                }} />
-                {localStorage.getItem('token') && <OnMount onMount={handleGoToTodoPage} /> }                
-              </React.Fragment>
-            )}
-          </PageConsumer>
-        )}
-      </UserConsumer>
-    )
+    if (this.state.success) {
+      return (
+        <Redirect to='todo' />
+      )
+    } else {
+      return (
+        <UserConsumer>
+          {({login}) => (
+            <LoginForm onLogin={async (usernamer, password) => {
+              await login(usernamer, password)
+              this.setState({success: true}) 
+            }} />
+          )}
+        </UserConsumer>
+      )
+    }
   }
 }
