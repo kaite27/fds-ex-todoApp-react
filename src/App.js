@@ -11,15 +11,19 @@ export default class App extends Component {
       <PageProvider>
         <UserProvider>
           <PageConsumer>
-            {value => localStorage.getItem('token') ? (
+            {/* {value => localStorage.getItem('token') ? (
                 <TodoPage />
               ) : value.page === 'login' ? (
                 <LoginPage />
               ) : (
                 <TodoPage />
-              )
-            }           
-          </PageConsumer>
+              )}           */}
+            {value => value.page === 'todo' ? (
+              <TodoPage/>
+            ) : (
+              <LoginPage />
+            )}
+          </PageConsumer> 
         </UserProvider>
       </PageProvider>
     )
