@@ -18,8 +18,8 @@ export default class LoginFormContainer extends Component {
       return (
         <UserConsumer>
           {({login}) => (
-            <LoginForm onLogin={async (usernamer, password) => {
-              await login(usernamer, password)
+            <LoginForm onLogin={async (username, password) => {
+              await login(username, password)
               this.setState({success: true}) 
             }} />
           )}

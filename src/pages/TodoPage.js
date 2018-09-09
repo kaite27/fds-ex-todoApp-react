@@ -6,6 +6,9 @@ import LogoutButtonContainer from '../containers/LogoutButtonContainer'
 import withAuth from '../hoc/withAuth.js'
 
 class TodoPage extends Component {
+  static defaultProps = {
+    title: 'Default'
+  }
   render() {
     return (      
       <React.Fragment>
@@ -17,4 +20,11 @@ class TodoPage extends Component {
   }
 }
 
-export default withAuth(TodoPage)
+// static prop 과 동일하게 작동
+// TodoPage.defaultProps = {
+//   title: 'DEFAULT'
+// }
+
+// HOC 를 반환하는 withAuth()
+// 에 인자를 부여하기 위한 (TodoPage)
+export default withAuth('/login')(TodoPage)

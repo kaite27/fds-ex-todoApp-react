@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 
 export default class TodoForm extends Component {
+  static defaultProps = {
+    onCreate: () => {} // To add a new todo list
+  }
+  
   state = {
     newTodoBody: ''
   }

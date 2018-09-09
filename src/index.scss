@@ -1,0 +1,89 @@
+@import '../node_modules/bulma/bulma.sass';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.row {
+  width: 650px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: rgb(34, 194, 60);
+}
+
+label {
+  display: block;
+  text-align: center;
+}
+
+.todoInput {
+  width: 80%;
+  padding: 5px 3px; 
+}
+
+.addTodoButton {
+  margin-left: 10px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.todoList {
+  list-style-type: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #fff;
+  color: #666;
+  background-color: rgba(100, 100, 100, 0.3);
+}
+
+.todoList.complete {
+  background-color: rgba(26, 243, 55, 0.3);
+}
+
+.done {
+  text-decoration: line-through;
+  color: rgb(17, 138, 37);
+}
+
+.todoBody {
+  cursor: pointer;
+  transition: color 0.6s;
+  display: inline-block;
+  width: calc(100% - 150px);
+  padding: 0 10px;
+}
+
+.todoBody:hover {
+  color: #999;
+}
+
+.btn__done, .btn__delete, .addTodoButton {
+  background-color: hsl(141, 71%, 48%);
+  border: 0;
+  padding: 7px 13px;
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.btn__done:hover, .btn__delete:hover, .addTodoButton:hover {
+  background-color: hsl(141, 70%, 42%);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn__delete {
+  background-color: hsl(348, 100%, 61%)
+}
+
+.btn__delete:hover {
+  background-color: hsl(348, 68%, 50%)
+}
+/* list type css */
