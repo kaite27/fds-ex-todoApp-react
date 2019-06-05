@@ -9,6 +9,7 @@ body {
 .row {
   width: 650px;
   margin: 0 auto;
+  background-color: #666;
 }
 
 h1 {
@@ -87,3 +88,102 @@ ul {
   background-color: hsl(348, 68%, 50%)
 }
 /* list type css */
+
+
+// ---------- LoginForm -------------- //
+
+section { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh !important;
+}
+
+.LoginForm {
+  // background: url("https://image.freepik.com/free-photo/various-manicure-tools-products-white-background_23-2147971378.jpg");
+  // background-size: cover;
+  background-color: hsl(141, 71%, 48%);
+}
+
+.LoginForm .design-box {
+  width: 400px;
+  height: auto;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 8px;
+  box-shadow: 0 15px 24px rgba(0, 0, 0, .5);
+}
+
+.LoginForm .design-box h2 {
+  font-size: 3rem;
+  color: #fff;
+  margin: 0 0 -10px 30px;
+  text-align: center;
+}
+
+.LoginForm .design-box p {
+  text-align: center;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.LoginForm .design-box .inputBox {
+  position: relative;
+}
+
+.LoginForm .design-box .inputBox input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.LoginForm .design-box .inputBox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.LoginForm .design-box .inputBox input:focus ~ label,
+.LoginForm label.valid {
+  top: -20px !important;
+  font-size: 0.8rem !important;
+  color: hsl(141, 71%, 48%) !important;
+  font-weight: 700 !important;
+}
+
+.LoginForm .design-box form button {
+  border: none;
+  outline: none;
+  color: #fff;
+  background: hsl(141, 71%, 48%);
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.6s;
+}
+
+.LoginForm .design-box form button[type=button] {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.LoginForm .design-box .buttonBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.LoginForm .design-box button:hover {
+  background: #999;
+}
