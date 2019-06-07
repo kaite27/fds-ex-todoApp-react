@@ -6,13 +6,9 @@ import LogoutButtonContainer from '../containers/LogoutButtonContainer'
 import withAuth from '../hoc/withAuth.js'
 
 class TodoPage extends Component {
-  static defaultProps = {
-    title: 'Default'
-  }
   render() {
     return (      
       <React.Fragment>
-        <h4>{this.props.title}</h4>
         <TodoContainer />
         <LogoutButtonContainer />
       </React.Fragment>
