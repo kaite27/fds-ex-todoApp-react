@@ -1,39 +1,29 @@
 @import '../node_modules/bulma/bulma.sass';
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+
+#root {
+  background-color: #A66060;
+  height: 100vh;
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .row {
   width: 1000px;
   margin: 0 auto;
-  background-color: #666;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 4px 4px 12px rgb(26, 1, 1);
+  overflow: hidden;
 }
 
 h1 {
   font-size: 3rem;
   text-align: center;
-  color: rgb(34, 194, 60);
-}
-
-label {
-  display: block;
-  text-align: center;
-}
-
-.todoInput {
-  width: 80%;
-  padding: 5px 3px; 
-}
-
-.addTodoButton {
-  margin-left: 10px;
-}
-
-ul {
-  padding-left: 0;
 }
 
 .todoList {
@@ -41,24 +31,20 @@ ul {
   width: 100%;
   padding: 10px;
   border: 1px solid #fff;
-  color: #666;
-  background-color: rgba(100, 100, 100, 0.3);
-}
-
-.todoList.complete {
-  background-color: rgba(26, 243, 55, 0.3);
+  border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 .done {
   text-decoration: line-through;
-  color: rgb(17, 138, 37);
+  color: rgb(172, 172, 172);
+  cursor: default !important;
 }
 
 .todoBody {
   cursor: pointer;
   transition: color 0.6s;
   display: inline-block;
-  width: calc(100% - 150px);
+  width: calc(100% - 135px);
   padding: 0 10px;
 }
 
@@ -66,8 +52,8 @@ ul {
   color: #999;
 }
 
-.btn__done, .btn__delete, .addTodoButton {
-  background-color: hsl(141, 71%, 48%);
+.btn__done, .btn__delete, .addTodoButton, .logout {
+  background-color: #D9BABA;
   border: 0;
   padding: 7px 13px;
   color: #fff;
@@ -75,17 +61,17 @@ ul {
   transition: 0.3s;
 }
 
-.btn__done:hover, .btn__delete:hover, .addTodoButton:hover {
-  background-color: hsl(141, 70%, 42%);
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+.complete, .addTodoButton {
+  background-color: #592222;
+  cursor: pointer;
 }
 
 .btn__delete {
-  background-color: hsl(348, 100%, 61%)
+  background-color: rgb(87, 87, 87);
 }
 
 .btn__delete:hover {
-  background-color: hsl(348, 68%, 50%)
+  background-color: rgb(46, 46, 46);
 }
 /* list type css */
 
@@ -100,9 +86,7 @@ section {
 }
 
 .LoginForm {
-  // background: url("https://image.freepik.com/free-photo/various-manicure-tools-products-white-background_23-2147971378.jpg");
-  // background-size: cover;
-  background-color: hsl(141, 71%, 48%);
+  background-color: #592222;
 }
 
 .LoginForm .design-box {
@@ -158,7 +142,7 @@ section {
 .LoginForm label.valid {
   top: -20px !important;
   font-size: 0.8rem !important;
-  color: hsl(141, 71%, 48%) !important;
+  color: #D97373 !important;
   font-weight: 700 !important;
 }
 
@@ -166,7 +150,7 @@ section {
   border: none;
   outline: none;
   color: #fff;
-  background: hsl(141, 71%, 48%);
+  background: #D97373;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 3px;
@@ -191,20 +175,25 @@ section {
 // ---------- TodoContainer -------------- //
 .todo {
   &-box {
+    box-sizing: border-box;
     display: grid;
-    grid-template-columns: 350px 650px;
-    grid-template-rows: auto;
-    grid-template-areas: "aside list";  
+    grid-template-columns: 340px 1fr;
+    grid-gap: 5px;
+    grid-template-rows: minmax(500px, max-content);
+    grid-template-areas: "aside list"; 
   }
   &-aside {
     grid-area: aside;
+    padding: 10px 0 10px 10px;
   }
   &-category {
     li {
       padding: 20px;
-      font-size: 1.3rem;  
-      &.active {
-        background-color: aquamarine;
+      margin: 2px;
+      border-radius: 5px;
+      &.active,
+      &:hover {
+        background-color: rgba(217, 186, 186, 0.753);
       }    
       span {
         float: right;
@@ -212,12 +201,49 @@ section {
         width: 25px;
         border-radius: 30px;
         line-height: 25px;
-        background-color: antiquewhite;
+        background-color: #592222;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #fff;
       }
     }
   }
   &-list {
     grid-area: list;
+    padding-bottom: 40px;
+    .todo-header {
+      height: 140px;
+      background: url("https://image.freepik.com/free-photo/pink-cherry-blossom-marble-textured-background_23-2148061495.jpg");
+    }
+    label {
+      display: block;
+      text-align: center;
+      margin: 30px 0 15px 0;
+      input {
+        width: 78%;
+        padding: 10px 15px;
+        outline: none;
+        &:focus {
+          border: 2px solid #592222;
+        }
+      }
+      .addTodoButton {
+        margin-left: 10px;
+        padding: 12px 20px;
+      }
+    }
+    ul {
+      margin-right: 10px;
+    } 
+  }
+  &-header {
+    display: flex;
+    align-items: flex-end;
+    h2 {
+      color: rgb(105, 105, 105);
+      font-size: 1.5rem;
+      margin: 0 0 0 7px;
+    }
   }
 }
 
@@ -226,15 +252,15 @@ section {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 70px;
-    background-color: #fff;
+    border-bottom: 1px solid rgb(223, 223, 223);
+    margin-bottom: 3px;
     span {
-      margin-left: 15px;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
     }
   }
   &-pic {
     display: inline-block;
+    margin: 20px 20px 10px 20px;
     width: 70px;
     height: 70px;
     border-radius: 70px;
@@ -245,3 +271,16 @@ section {
   }
 }
 
+//  ----------- LogoutButtonCT ------------ //
+.logout {
+  width: 350px;
+  padding: 15px 30px;
+  box-shadow: 2px 2px 5px rgb(26, 1, 1);
+  font-size: 1.1rem;
+  background-color: #592222;
+  &-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

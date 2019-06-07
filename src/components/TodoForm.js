@@ -28,7 +28,7 @@ export default class TodoForm extends Component {
     const { newTodoBody } = this.state
     return(        
       <label>
-        <input className="todoInput" type="text" value={newTodoBody} onChange={this.handleInputChange} placeholder="I need to .."/>
+        <input className="todoInput" type="text" value={newTodoBody} onChange={this.handleInputChange} placeholder="Add new todo.."/>
         <button className="addTodoButton" onClick={this.handleAddNewTodoButton}>Add</button>
       </label>
     )

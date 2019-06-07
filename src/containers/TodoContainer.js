@@ -9,7 +9,7 @@ export default class TodoContainer extends Component {
     return (      
       <TodoProvider>
         <TodoConsumer>
-          {({todos, loading, createTodo, updateTodoItemBody, completeTodo, deleteTodo, fetchTodos}) => (
+          {({todos, loading, createTodo, updateTodoItemBody, completeTodo, deleteTodo, fetchTodos, todoCount}) => (
           <div className="row">  
             <div className="todo-box">
               <div className="todo-aside">
@@ -21,13 +21,16 @@ export default class TodoContainer extends Component {
                 </div>
                 <div className="todo-category">
                   <ul>
-                    <li className="active">To Do<span className="todo-count">5</span></li>
+                    <li className="active">To Do<span className="todo-count">{todoCount}</span></li>
                     <li><i className="fas fa-shopping-cart"/>Work</li>
                     <li><i className="fas fa-plane"/>Travel</li>
                   </ul>
                 </div>
               </div>
               <div className="todo-list">
+              <div className="todo-header">
+                <h2>To Do</h2>
+              </div>
             <TodoForm onCreate={createTodo}/>
             {loading ? (
               <div>loading...</div>

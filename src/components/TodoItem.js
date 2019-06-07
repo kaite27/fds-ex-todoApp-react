@@ -9,9 +9,9 @@ export default class TodoItem extends Component {
   render() {
     const {id, body, complete, onComplete, onDelete} = this.props
     return (
-      <li className={complete ? 'todoList complete' : 'todoList'} key={id}>
-        <button className="btn__done" onClick={e => { onComplete(id) }}>Done</button>
-        <span className={complete ? 'todoBody done' : 'todoBody'}  onClick={this.handleBodyClick}>{ body }</span>
+      <li className={complete ? 'todoList done' : 'todoList'} key={id}>
+        {complete ? <button disabled className="btn__done">Done</button> : <button className="btn__done complete" onClick={e => { onComplete(id) }}>Done</button>}
+        {complete ? <span className='todoBody done'>{body}</span> : <span className='todoBody' onClick={this.handleBodyClick}>{ body }</span>}
         <button className="btn__delete" onClick={e => { onDelete(id) }}>Delete</button>
       </li>
     )

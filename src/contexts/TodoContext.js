@@ -7,7 +7,8 @@ const { Provider, Consumer } = React.createContext()
 class TodoProvider extends Component {
   state = {
     loading: false,
-    todos: []
+    todos: [],
+    todoCount: 0
   }
 
   componentDidMount() {
@@ -17,10 +18,16 @@ class TodoProvider extends Component {
   // (component lifecycle hook) component 가 처음 마운트되면..
   fetchTodos = async () => {
     this.setState({ loading: true })
-    const res = await todoAPI.get('/todos')
+    const res = await todoAPI.get('/todos?_sort=id&_order=desc')
+    const resTodo = await todoAPI.get('/todos?complete=false')
+    let todoCnt = 0;
+    resTodo.data.map(i => {
+      todoCnt ++;
+    })
     this.setState({
       todos: res.data,
-      loading: false
+      loading: false,
+      todoCount: todoCnt
     })
   }
 
@@ -80,7 +87,8 @@ class TodoProvider extends Component {
       completeTodo: this.completeTodo,
       deleteTodo: this.deleteTodo,
       loading: this.state.loading,
-      todos: this.state.todos
+      todos: this.state.todos,
+      todoCount: this.state.todoCount
     }
     return(
       <Provider value={value}>{this.props.children}</Provider>

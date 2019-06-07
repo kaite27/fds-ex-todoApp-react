@@ -15,14 +15,16 @@ export default class LogoutButtonContainer extends Component {
       )
     } else {
       return(
+          <div className="logout-box">
         <UserConsumer>
           {({logout}) => (
-            <button onClick={e => {
+            <button className="logout" onClick={e => {
               logout();
               this.setState({success: true})
-            }}>Log out</button>
+            }}>Change accout? Log out</button>
           )}
         </UserConsumer>
+          </div>
       )
     }
   }
