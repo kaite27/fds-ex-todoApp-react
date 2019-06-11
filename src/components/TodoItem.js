@@ -6,6 +6,7 @@ export default class TodoItem extends Component {
     const {id, onBodyUpdate} = this.props
     onBodyUpdate(id, newBody)
   }
+  
   render() {
     const {id, body, complete, onComplete, onDelete} = this.props
     return (
