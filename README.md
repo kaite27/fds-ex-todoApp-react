@@ -2,7 +2,7 @@
   <h3 align="center">fds-ex-todoApp-react</h3>
   <p align="center">
   Code a simple `Todo App` using React, Axios; for HTML file transfer, and SASS; for design.<br> 
-  To check out the website?<a href="https://beigenut.github.io/ex-design-02-webcafe/" target="_blank"> Click here</a> <br>
+  To check out the website?<a href="https://ex-react-todo-app.netlify.com/" target="_blank"> Click here</a> <br>
   Please follow the login instructor on Login Page :)
 </p>
 </p>
