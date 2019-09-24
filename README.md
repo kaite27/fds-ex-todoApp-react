@@ -107,8 +107,5 @@ Project Link: [https://github.com/beigenut/fds-ex-todoApp-react](https://github.
 
 
 
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 [product-screenshot]: https://drive.google.com/uc?export=view&id=1Q3FBXvmNSsXFkwXTLIlgXuNo7QQ47QfZ
